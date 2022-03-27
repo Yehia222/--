@@ -1,15 +1,19 @@
-function searchInput(){
-    let input = document.getElementById('searchbar').value
-    input=input.toLowerCase();
-    let x = document.getElementsByClassName('ele');
-      
-    for (i = 0; i < x.length; i++) { 
-        if (!x[i].innerHTML.toLowerCase().includes(input)) {
-            x[i].style.display="none";
-            
-        }
-        else {
-            x[i].style.display="list-item";                 
-        }}
-}
-
+function search() {
+ 
+    var name = document.getElementById("searchbar").value;
+    var pattern = name;
+    var targetId = "";
+  
+    var divs = document.getElementsByTagName("article");
+    for (var i = 0; i < divs.length; i++) {
+       var para = divs[i].getElementsByTagName("h2");
+       for(var j=0; j<para.length; j++){
+            var index = para[j].innerText.indexOf(pattern);
+            if (index != -1) {
+                targetId = divs[i].parentNode.id;
+                document.getElementsByTagName("article")[i].scrollIntoView();
+                break;
+            }
+       }
+    }  
+ }
